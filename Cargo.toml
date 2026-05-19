@@ -1,0 +1,10 @@
+[package]
+name = "algorithm"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+[[examples]]
+name = "maixmum_product_subarray"
+path = "examples/1_dp/maixmum_product_subarray.rs"
