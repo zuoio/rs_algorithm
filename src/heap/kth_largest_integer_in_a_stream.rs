@@ -1,10 +1,12 @@
-use std::{cmp::Reverse, collections::BinaryHeap, num};
+use std::{cmp::Reverse, collections::BinaryHeap};
 
+#[allow(dead_code)]
 struct KthLargest {
     heap: BinaryHeap<Reverse<i32>>,
     top_k: usize,
 }
 
+#[allow(dead_code)]
 impl KthLargest {
     pub fn new(k: i32, nums: Vec<i32>) -> Self {
         let top_k = k as usize;
