@@ -1,3 +1,4 @@
+pub mod advanced_graph;
 pub mod backtrack;
 pub mod common;
 pub mod heap;
