@@ -2,53 +2,54 @@ use crate::common::Solution;
 
 impl Solution {
     pub fn max_profit(prices: Vec<i32>) -> i32 {
-        // Self::recursion(prices)
-        Self::top_down(prices)
+        // Self::recursion(prices);
+        // Self::top_down(prices);
+        Self::bottom_up(prices)
     }
 
-    fn recursion(prices: Vec<i32>) -> i32 {
-        fn dfs(i: usize, buying: bool, prices: &[i32]) -> i32 {
-            if i >= prices.len() {
-                return 0;
-            }
+    // fn recursion(prices: Vec<i32>) -> i32 {
+    //     fn dfs(i: usize, buying: bool, prices: &[i32]) -> i32 {
+    //         if i >= prices.len() {
+    //             return 0;
+    //         }
 
-            let cooldown = dfs(i + 1, buying, prices);
+    //         let cooldown = dfs(i + 1, buying, prices);
 
-            if buying {
-                let buy = dfs(i + 1, false, prices) - prices[i];
-                buy.max(cooldown)
-            } else {
-                let sell = dfs(i + 2, true, prices) + prices[i];
-                sell.max(cooldown)
-            }
-        }
-        dfs(0, true, &prices)
-    }
+    //         if buying {
+    //             let buy = dfs(i + 1, false, prices) - prices[i];
+    //             buy.max(cooldown)
+    //         } else {
+    //             let sell = dfs(i + 2, true, prices) + prices[i];
+    //             sell.max(cooldown)
+    //         }
+    //     }
+    //     dfs(0, true, &prices)
+    // }
 
-    fn top_down(prices: Vec<i32>) -> i32 {
-        let n = prices.len();
-        let mut dp = vec![vec![-1i32; 2]; n];
+    // fn top_down(prices: Vec<i32>) -> i32 {
+    //     let n = prices.len();
+    //     let mut dp = vec![vec![-1i32; 2]; n];
 
-        fn dfs(i: usize, buying: usize, prices: &[i32], dp: &mut Vec<Vec<i32>>) -> i32 {
-            if i >= prices.len() {
-                return 0;
-            }
-            if dp[i][buying] != -1 {
-                return dp[i][buying];
-            }
-            let cooldown = dfs(i + 1, buying, prices, dp);
-            dp[i][buying] = if buying == 1 {
-                let buy = dfs(i + 1, 0, prices, dp) - prices[i];
-                buy.max(cooldown)
-            } else {
-                let sell = dfs(i + 2, 1, prices, dp) + prices[i];
-                sell.max(cooldown)
-            };
+    //     fn dfs(i: usize, buying: usize, prices: &[i32], dp: &mut Vec<Vec<i32>>) -> i32 {
+    //         if i >= prices.len() {
+    //             return 0;
+    //         }
+    //         if dp[i][buying] != -1 {
+    //             return dp[i][buying];
+    //         }
+    //         let cooldown = dfs(i + 1, buying, prices, dp);
+    //         dp[i][buying] = if buying == 1 {
+    //             let buy = dfs(i + 1, 0, prices, dp) - prices[i];
+    //             buy.max(cooldown)
+    //         } else {
+    //             let sell = dfs(i + 2, 1, prices, dp) + prices[i];
+    //             sell.max(cooldown)
+    //         };
 
-            dp[i][buying]
-        }
-        dfs(0, 1, &prices, &mut dp)
-    }
+    //         dp[i][buying]
+    //     }
+    //     dfs(0, 1, &prices, &mut dp)
+    // }
 
     fn bottom_up(prices: Vec<i32>) -> i32 {
         let n = prices.len();
